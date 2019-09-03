@@ -35,9 +35,9 @@ highboard = canvas.create_text(80, 70, text=("High Score: " + str(HighScore)), f
 canvas.tag_raise(scoreboard)
 canvas.tag_raise(highboard)
 
-imageBIRD = PhotoImage(file="bird.gif")
-imageBIRDUP = PhotoImage(file="birdup.gif")
-imageBIRDDOWN = PhotoImage(file="birddown.gif")
+imageBIRD = PhotoImage(file="assets/bird.gif")
+imageBIRDUP = PhotoImage(file="assets/birdup.gif")
+imageBIRDDOWN = PhotoImage(file="assets/birddown.gif")
 
 bird = canvas.create_image(120, BIRD_Y, image=imageBIRD)
 canvas.tag_lower(bird)
