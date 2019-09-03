@@ -15,7 +15,7 @@ UpForce = 8
 
 BIRD_Y = height/2
 PIPE_X = width
-pipeSize = 120
+PIPESIZE = 120
 PIPEDISTANCE = 8 * 60
 
 pipelist = []
@@ -31,7 +31,8 @@ canvas = Canvas(height=height, width=width, bg="skyblue", bd=0)
 canvas.pack()
 
 scoreboard = canvas.create_text(80, 40, text="Score: 0", font=("", 30))
-highboard = canvas.create_text(80, 70, text=("High Score: " + str(HighScore)), font=("", 15))
+highboard = canvas.create_text(80, 70, text=(
+    "High Score: " + str(HighScore)), font=("", 15))
 canvas.tag_raise(scoreboard)
 canvas.tag_raise(highboard)
 
@@ -53,8 +54,8 @@ def pipecreate():
     up_height = random.randint(50, (height - (gap + 50)))
     down_height = up_height + gap
 
-    pipe_up = canvas.create_rectangle(PIPE_X, 0, (PIPE_X + pipeSize), up_height, fill="darkgreen")
-    pipe_down = canvas.create_rectangle(PIPE_X, 700, (PIPE_X + pipeSize), down_height, fill="darkgreen")
+    pipe_up = canvas.create_rectangle(PIPE_X, 0, (PIPE_X + PIPESIZE), up_height, fill="darkgreen")
+    pipe_down = canvas.create_rectangle(PIPE_X, 700, (PIPE_X + PIPESIZE), down_height, fill="darkgreen")
 
     canvas.tag_lower(pipe_up)
     canvas.tag_lower(pipe_down)
@@ -107,13 +108,13 @@ def pipemotion():
     for pipe in pipelist:
 
         pipe[4] = pipe[4] - PIPEvelocity
-        canvas.coords(pipe[0], pipe[4], 0, (pipe[4] + pipeSize), pipe[2])
-        canvas.coords(pipe[1], pipe[4], 700, (pipe[4] + pipeSize), pipe[3])
+        canvas.coords(pipe[0], pipe[4], 0, (pipe[4] + PIPESIZE), pipe[2])
+        canvas.coords(pipe[1], pipe[4], 700, (pipe[4] + PIPESIZE), pipe[3])
 
         if pipe[4] == width - PIPEDISTANCE:
             pipecreate()
 
-        if (pipe[4] + pipeSize) < 0:
+        if (pipe[4] + PIPESIZE) < 0:
             canvas.delete(pipe[0])
             canvas.delete(pipe[1])
             pipelist.pop(0)
@@ -132,7 +133,7 @@ def collision(up_height, down_height, cord_x):
     global SCORE
 
     if cord_x <= 120 + imageBIRD.width()/3 and \
-            (cord_x + pipeSize) >= 120 - imageBIRD.width()/3:
+            (cord_x + PIPESIZE) >= 120 - imageBIRD.width()/3:
 
         if BIRD_Y - imageBIRD.height()/3 <= up_height or \
                 BIRD_Y + imageBIRD.height()/2 >= down_height:
