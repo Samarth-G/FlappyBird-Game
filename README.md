@@ -4,7 +4,7 @@ FlappyBird-Game
 A basic version of the flappy bird game using Python (tkinter).
 
 **Instructions**: 
-  + Press "Space Bar" to jump, <br>
+  + Press "Space Bar" to jump
   + Press "Enter" or "Return" to restart
 
 <br>
