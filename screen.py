@@ -19,7 +19,7 @@ PIPESIZE = 120
 PIPEDISTANCE = 8 * 60
 
 pipelist = []
-endcard = []
+endcards = []
 
 jumps = 0
 SCORE = 0
@@ -148,7 +148,7 @@ def gameover():
     print("GAME OVER")
 
     if SCORE > HighScore:
-        e = [canvas.create_text(350, 300, text="GAME OVER", font=("", 50)),
+        endcard = [canvas.create_text(350, 300, text="GAME OVER", font=("", 50)),
              canvas.create_text(350, 350, text=("-- NEW HIGH SCORE = " + str(SCORE) + " --"), font=("", 30)),
              canvas.create_text(350, 380, text="Press ENTER to restart")]
 
@@ -157,11 +157,11 @@ def gameover():
         scorefile.write(str(HighScore))
 
     else:
-        e = [canvas.create_text(350, 300, text="GAME OVER", font=("", 50)),
+        endcard = [canvas.create_text(350, 300, text="GAME OVER", font=("", 50)),
              canvas.create_text(350, 340, text="Press ENTER to restart")]
 
-    for i in e:
-        endcard.append(i)
+    for item in endcard:
+        endcards.append(item)
 
     window.bind("<Return>", restartgame)
 
@@ -171,22 +171,22 @@ def restartgame(event=None):
     global BIRD_Y
     global GAME
     global pipelist
-    global endcard
+    global endcards
 
     BIRD_Y = height/2
     canvas.itemconfigure(bird, image=imageBIRD)
     SCORE = 0
     canvas.itemconfigure(scoreboard, text=("Score: " + str(SCORE)))
 
-    for i in pipelist:
-        canvas.delete(i[0])
-        canvas.delete(i[1])
+    for item in pipelist:
+        canvas.delete(item[0])
+        canvas.delete(item[1])
 
-    for i in endcard:
-        canvas.delete(i)
+    for item in endcards:
+        canvas.delete(item)
 
     pipelist = []
-    endcard = []
+    endcards = []
     GAME = True
     main()
 
